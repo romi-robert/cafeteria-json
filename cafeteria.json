@@ -1,12 +1,45 @@
 { 
-   "Name":"Menu Cafetería",
+   "Name":"El propio CoffeeShop",
    "Description":"Dulcería y Café",
+   "Comentarios":[
+      {
+      
+         "Usuario":"Marcelo Polino",
+         "Comentario":"Café exquisito y medialunas frescas.",
+         "Puntuacion":""
+      },
+      {
+         "Usuario":"L-Gante",
+         "Comentario":"Las mejores medialunas de Montevideo klokeeee!!",
+         "Puntuacion":""
+      },
+      {
+         "Usuario":"Susana Gimenez",
+         "Comentario":"El cafe estaba frio, las tostadas duras (no eran integrales) y quemadas, un asco. No recomiendo.",
+         "Puntuacion":""
+      },
+      {
+         "Usuario": "Antonela Rocuzzo",
+         "Comentario": "Buena atencion y productos de primerisima calidad, medialunas casi tan buenas como las Argentinas. A Leo le encanto!!!",
+         "Puntuacion":""
+      },
+      {
+         "Usuario":"Moria Casan",
+         "Comentario":"Ambiente espectacular, y comida de otro nivel.",
+         "Puntuacion":""
+      },
+      {
+         "Usuario":"Santi Fuentes (Illo Juan) ",
+         "Comentario":"Ostia que buenos bocatas chavales.",
+         "Puntuacion":""
+      }
+   ],
    "food_items":[ 
       { 
          "Name":"Medialunas",
          "description":"Comunes, Jamon y queso, con Palta y con nueces trituradas ",
          "price":"110",
-         "image":"https://img.freepik.com/foto-gratis/croissant-sandwich-jamon_1339-7779.jpg?w=1380&t=st=1692023451~exp=1692024051~hmac=3fd015175f195aafe3f0351647533414dc32022a094f81cd429136f765185b14"
+         "image":"https://img.freepik.com/foto-gratis/croissant-sandwich-jamon_1339-7779.jpg?w=1380&t=st=1692023451~exp=1692024051~hmac=3fd015175f195aafe3f0351647533414dc32022a094f81cd429136f765185b14"  
       },
       { 
          "Name":"Cafe",

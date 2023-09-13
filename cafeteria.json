@@ -3,35 +3,40 @@
    "Description":"Dulcería y Café",
    "Comentarios":[
       {
-      
+         "id": 1,
          "Usuario":"Marcelo Polino",
-         "Comentario":"Café exquisito y medialunas frescas.",
-         "Puntuacion":""
+         "Comentario":"210 pesos la tostada, que animalada!!!!",
+         "Puntuacion":"2"
       },
       {
+         "id": 2,
          "Usuario":"L-Gante",
          "Comentario":"Las mejores medialunas de Montevideo klokeeee!!",
-         "Puntuacion":""
+         "Puntuacion":"5"
       },
       {
+         "id": 3,
          "Usuario":"Susana Gimenez",
          "Comentario":"El cafe estaba frio, las tostadas duras (no eran integrales) y quemadas, un asco. No recomiendo.",
-         "Puntuacion":""
+         "Puntuacion":"1"
       },
       {
+         "id": 4,
          "Usuario": "Antonela Rocuzzo",
          "Comentario": "Buena atencion y productos de primerisima calidad, medialunas casi tan buenas como las Argentinas. A Leo le encanto!!!",
-         "Puntuacion":""
+         "Puntuacion":"5"
       },
       {
+         "id": 5,
          "Usuario":"Moria Casan",
          "Comentario":"Ambiente espectacular, y comida de otro nivel.",
-         "Puntuacion":""
+         "Puntuacion":"4"
       },
       {
+         "id": 6,
          "Usuario":"Santi Fuentes (Illo Juan) ",
          "Comentario":"Ostia que buenos bocatas chavales.",
-         "Puntuacion":""
+         "Puntuacion":"5"
       }
    ],
    "food_items":[ 

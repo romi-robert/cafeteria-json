@@ -12,7 +12,9 @@ body {
     color:white;
     text-align: center;
 }
-
+h1{
+  color:#fff;
+}
 
 .menu-item {
     width: 250px;
@@ -24,11 +26,14 @@ body {
     background-color: white;
     border-radius: 10px;
     align-content: center;
-    color:black;
     overflow: hidden;
+    color: black
     
 }
 
+.menu-item p {
+  color: black;
+}
 .menu-item img {
     max-width: 200px;
     height: 200px;
@@ -47,7 +52,8 @@ body {
     margin-left: 1em;
     font-size: 3em;
     color: #fff;
-  }
+
+}
   
   .container-contact {
     padding: 3em;
@@ -102,7 +108,7 @@ body {
   
   }
   .contact-form {
-    width: 40%; 
+    width: 130%; 
     padding: 2em;
     background-color: rgba(255, 255, 255, 0.1); 
     border-radius: 10px;
@@ -120,34 +126,157 @@ body {
     align-items: center; 
     
 }
+/* Estilos generales para la sección de comentarios */
+#comentarios {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrar horizontalmente */
+  text-align: center; /* Centrar el texto horizontalmente */
+}
 
-  @media screen and (max-width: 800px){
-    .menu {
-      flex-direction: column;
-      justify-content: center;
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100vh;
+.comment {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  color: black;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  width: 90%; /* Ancho del comentario, ajusta según tus preferencias */
+  max-width: 800px; /* Ancho máximo para evitar que sea demasiado ancho en pantallas grandes */
+  text-align: left; /* Alinea el texto del comentario a la izquierda */
+}
+
+.comment strong {
+  font-weight: bold;
+}
+
+.comment p {
+  margin: 5px 0;
+}
+
+/* Estilos para las calificaciones en los comentarios */
+.rating {
+  margin-top: 10px;
+}
+
+.rating i {
+  font-size: 18px;
+  color: #f8c102; /* Color de las estrellas seleccionadas */
+  margin-right: 5px;
+}
+
+/* Estilos para las estrellas vacías en las calificaciones */
+.rating i.fa-star-o {
+  color: #ccc; /* Color de las estrellas no seleccionadas */
+}
+
+.menu h1{
+  font-size: 50px;
+  
+}
+
+  @media screen and (max-width: 720px){
+    
+    
+
+    .menu-item {
+      width: 60%;
+      height: 280px;
+      padding: 8px;
+      margin: 6px;
+  }
+  
+  .menu-item img {
+      max-width: 80%;
+      height: 47%;
+  }
+  .menu-item:hover{
+      transform: scale(1.1);
+      background-color: rgb(202, 202, 202);
+  }   
+  
+  
+  .contact-headings h2 {
+      margin-top: 1em;
+      margin-left: 1em;
+      font-size: 2em;
+      color: #fff;
+      align-content: center;
+  
+  }
+    
+    .container-contact {
+      padding: 1em;
+      margin: 0 auto;
+    }
+    
+  
+    
+    .form {
       display: flex;
-      
-      
+      flex-direction:column;
+      width: 100%;
+      margin-top: 2em;
     }
-    .menu li {
-      margin: 2em;
-    } 
-   
+    .form input,
+    .form textarea {
+      margin-top: -3em;
+      color: #fff;
+    }
+    .form input::placeholder,
+    .form textarea::placeholder {
+      color: #fff;
+    }
+    .form textarea {
+      height: 160px;
+      padding: 1em;
+      margin: 1em;
+      width: 95%;
+      align-self: center;
 
-    .menu img {
-      width: min(70%, 350px);
-      height: auto;
     }
+    .btn-submit {
+      width: 90%;
+      font-size: 12px;
+    }
+    .contact-form {
+      width: 80%; 
+      padding: 2em;
+      
+    }
+    
+    .container-contact {
+      padding: 1em;
+      
+  }
+  h1 {
+    font-size: 28px;
+    width: 80%;
+    align-content: center ;
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+  }
+  .menu-item h2{
+    font-size: 20px;
+    padding: auto;
+    margin: 4px auto;
+
+  }
+  .menu-item p{
+    font-size: 15px;
+  }
+  body {
+    background-image:linear-gradient(
+        0deg,
+        rgba(0,0,0,0.3),
+        rgba(0,0,0,0.3)
+     )
+    , url(background-cafeteria-responsive.avif);
+    background-size: 100%;
+    background-image: cover;
+}
+
  
-    .info-content{
-      display: flex;
-      justify-content: center;
-      flex-direction: column;
-      align-items: center;
-    }
-
 }

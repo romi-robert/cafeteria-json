@@ -40,35 +40,39 @@
       }
    ],
    "food_items":[ 
-      { 
+      {  "id": 11,
          "Name":"Medialunas",
-         "description":"Comunes, Jamon y queso, con Palta y con nueces trituradas ",
-         "price":"110",
+         "description":"Comunes, Jamon y queso, con Palta y con Nueces trituradas ",
+         "price":110,
          "image":"https://img.freepik.com/foto-gratis/croissant-sandwich-jamon_1339-7779.jpg?w=1380&t=st=1692023451~exp=1692024051~hmac=3fd015175f195aafe3f0351647533414dc32022a094f81cd429136f765185b14"  
       },
       { 
+         "id": 12,
          "Name":"Cafe",
-         "description":"Americano, mocca, capuccino",
-         "price":"120",
+         "description":"Cortado, Cappuccino, Mocca, Latte, Americano",
+         "price":120,
          "image":"https://img.freepik.com/foto-gratis/pareja-disfrutando-cafe-fin-semana_53876-30681.jpg?w=1060&t=st=1692023340~exp=1692023940~hmac=c114e9f7d80583e3d6bb5e7399d9a05f3f490dd8286b7165a146103f6d3842e6"
       },
       { 
+         "id": 13,
          "Name":"Tostadas",
-         "description":" Jamon y queso, bondiola y tomate, palta y tomate",
-         "price":"210",
+         "description":" Jamon y queso, Bondiola, Palta y Tomate",
+         "price":210,
          "image":"https://img.freepik.com/foto-gratis/tostada-abierta-aguacate-rodajas-aguacate-limon-semillas-lino-semillas-sesamo-rebanadas-pan-negro-vista-superior_2831-797.jpg?w=1380&t=st=1692023239~exp=1692023839~hmac=b89e7958fc2dd6a8839d1882ea72c0ddb49cb2ad34a52038ef48ef041e5bb207"
       },
       { 
+         "id": 14,
          "Name":"Dulces",
-         "description":"Cinnamon rolls, alfajor de coco con dulce de leche, alfajor de chocolate",
-         "price":"100",
+         "description":"Cinnamon Rolls, Alfajores de Dulce de Leche y de Chocolate",
+         "price":100,
          "image":"https://img.freepik.com/foto-gratis/vista-superior-galletas-dulces-pastel-chocolate-te-sobre-fondo-blanco-galleta-galleta-azucar-te-pastel-dulce_140725-80493.jpg?w=1380&t=st=1692023997~exp=1692024597~hmac=44b83c0e4e74bc3ca92b250de43de9c023a03df273c35a30bab9404255b34e60"
       },
       
       { 
+         "id": 15,
          "Name":"Donas",
-         "description":"Donas azucaradas de sabores",
-         "price":"90",
+         "description":"Donas azucaradas de Muchos Sabores",
+         "price":90,
          "image":"https://img.freepik.com/foto-gratis/rosquillas-surtidas-glaseado-chocolate-glaseado-rosa-chispitas_114579-64026.jpg?w=1380&t=st=1692023712~exp=1692024312~hmac=3d4b121b3eafbf043f79e38176a2fa006d9490dec0abc8d0c17fa05a6442ea14"
       }
       

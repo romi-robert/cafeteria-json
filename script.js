@@ -1,136 +1,155 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Obtener referencias a los elementos del formulario y la sección de comentarios
-  const form = document.querySelector('.form');
-  const nameInput = form.querySelector('input[type="text"]');
-  const commentInput = form.querySelector('textarea');
-  const commentsSection = document.getElementById('comentarios');
-  let commentRatings = {};
-
-  // Función para obtener estrellas basadas en la puntuación
-  function obtenerEstrellas(puntuacion) {
+    const form = document.querySelector('.form');
+    const nameInput = form.querySelector('input[type="text"]');
+    const commentInput = form.querySelector('textarea');
+    const commentsSection = document.getElementById('comentarios');
+    let commentRatings = {};
+  
+    function obtenerEstrellas(puntuacion) {
       const estrellas = '★'.repeat(puntuacion);
       const estrellasVacias = '☆'.repeat(5 - puntuacion);
-      const estrellasHTML = `<span style="color: orange">${estrellas}</span><span>${estrellasVacias}</span>`;
-      return estrellasHTML;
-  }
-
-  // Manejar el evento de envío del formulario
-  form.addEventListener('submit', function (e) {
-      e.preventDefault(); // Evitar el envío del formulario predeterminado
-
-      // Obtener el valor de los campos de entrada
+      return `<span style="color: orange">${estrellas}</span><span>${estrellasVacias}</span>`;
+    }
+  
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
       const nombre = nameInput.value;
       const comentario = commentInput.value;
-
-      // Crear un nuevo elemento de comentario
+      const puntuacion = commentRatings[commentRatings.length - 1];
+  
       const newComment = document.createElement('div');
       newComment.classList.add('comment');
-      const puntuacion = commentRatings[commentRatings.length - 1];
       newComment.innerHTML = `<strong>${nombre}</strong> (<strong>Puntuación:</strong> ${obtenerEstrellas(puntuacion)})<br>${comentario}`;
-
-      // Agregar el comentario a la sección de comentarios
+  
       commentsSection.appendChild(newComment);
-
-      // Limpiar los campos de entrada
+  
       nameInput.value = '';
       commentInput.value = '';
-  });
-
-  // Hacer una solicitud fetch para cargar los datos del menú desde el archivo JSON
-  fetch('cafeteria.json')
-      .then(response => response.json())
-      .then(data => {
-          const menuName = data.Name;
-          const menuDescription = data.Description;
-
-          const menuNameElement = document.createElement('h1');
-          menuNameElement.textContent = menuName;
-
-          const menuDescriptionElement = document.createElement('p');
-          menuDescriptionElement.textContent = menuDescription;
-
-          const divMenu = document.getElementById('menu');
-          divMenu.appendChild(menuNameElement);
-          divMenu.appendChild(menuDescriptionElement);
-
-          const foodItems = data.food_items;
-          foodItems.forEach(item => {
-              const itemName = item.Name;
-              const itemDescription = item.description;
-              const itemPrice = item.price;
-              const itemImage = item.image;
-
-              const itemContainer = document.createElement('div');
-              itemContainer.classList.add('menu-item');
-
-              const itemImageElement = document.createElement('img');
-              itemImageElement.src = itemImage;
-
-              const itemNameElement = document.createElement('h2');
-              itemNameElement.textContent = itemName;
-
-              const itemDescriptionElement = document.createElement('p');
-              itemDescriptionElement.textContent = itemDescription;
-
-              const itemPriceElement = document.createElement('p');
-              itemPriceElement.textContent = `Precio: $${itemPrice}`;
-
-              itemContainer.appendChild(itemImageElement);
-              itemContainer.appendChild(itemNameElement);
-              itemContainer.appendChild(itemDescriptionElement);
-              itemContainer.appendChild(itemPriceElement);
-
-              divMenu.appendChild(itemContainer);
-          });
-      })
-      .catch(error => {
-          console.error('Error al obtener los datos del menú:', error);
+    });
+  
+    function mostrarProductosEnCarrito() {
+      const listaCarrito = document.getElementById('lista-carrito');
+      listaCarrito.innerHTML = '';
+  
+      carrito.forEach(producto => {
+        const item = document.createElement('li');
+        item.innerHTML = `
+          <img src="${producto.image}" alt="${producto.name}" style="width: 50px; height: 50px;">
+          ${producto.name} - $${producto.price}`;
+        listaCarrito.appendChild(item);
       });
-
-  // Hacer una solicitud fetch para cargar los comentarios desde el archivo JSON
-  fetch('cafeteria.json')
-      .then(response => response.json())
-      .then(data => {
-          const comentarios = data.Comentarios;
-
-          comentarios.forEach(comment => {
-              const newComment = document.createElement('div');
-              newComment.classList.add('comment');
-              const puntuacion = comment.Puntuacion;
-
-              newComment.innerHTML = `<strong>${comment.Usuario}:</strong><br>${comment.Comentario}<br><strong>Puntuación:</strong> ${obtenerEstrellas(puntuacion)}`;
-
-              commentsSection.appendChild(newComment);
-          });
-      })
-      .catch(error => {
-          console.error('Error al cargar los comentarios:', error);
-      });
-
-      function enviarComentario() {
-        // Obtener los valores del nombre, comentario y puntuación
-        const nombre = document.getElementById("userInput").value;
-        const comentario = document.getElementById("userComment").value;
-        const puntuacion = document.querySelector('input[name="rating"]:checked').value;
-    
-        // Crear un nuevo elemento para mostrar el comentario en la página
-        const nuevoComentario = document.createElement("div");
-        nuevoComentario.classList.add("comment");
-        nuevoComentario.innerHTML = `
-        <strong>${nombre}:</strong><br>${comentario}<br><strong>Puntuación:</strong> ${obtenerEstrellas(puntuacion)}`;
-    
-        // Agregar el nuevo comentario al área de comentarios en la página
-        const comentariosSection = document.getElementById("comentarios");
-        comentariosSection.appendChild(nuevoComentario);
-    
-        // Limpiar los campos del formulario después de enviar el comentario
-        document.getElementById("userInput").value = "";
-        document.getElementById("userComment").value = "";
-        const ratingInputs = document.querySelectorAll('input[name="rating"]');
-        ratingInputs.forEach(input => (input.checked = false));
+  
+      const total = carrito.reduce((sum, producto) => sum + producto.price, 0);
+      document.getElementById('total').innerText = `$${total.toFixed(2)}`;
     }
-    
-    // Agregar un evento de clic al botón "Enviar comentario"
+  
+    function comprarProducto(itemContainer) {
+      const itemName = itemContainer.querySelector('h2').textContent;
+      const itemPrice = parseFloat(itemContainer.querySelector('p').textContent.split(' ')[1].slice(1));
+  
+      const producto = {
+        name: itemName,
+        price: itemPrice,
+        image: itemContainer.querySelector('img').src
+      };
+  
+      agregarAlCarrito(producto);
+    }
+  
+    fetch('cafeteria.json')
+      .then(response => response.json())
+      .then(data => {
+        const divMenu = document.getElementById('menu');
+        divMenu.innerHTML = `
+          <h1>${data.Name}</h1>
+          <p>${data.Description}</p>`;
+  
+        const foodItems = data.food_items;
+        foodItems.forEach(item => {
+          const itemContainer = document.createElement('div');
+          itemContainer.classList.add('menu-item');
+          itemContainer.innerHTML = `
+            <img src="${item.image}" alt="${item.Name}" style="width: 100px; height: 100px;">
+            <h2>${item.Name}</h2>
+            <p>${item.description}</p>
+            <p>Precio: $${item.price}</p>
+            <button class="btn-submit">Comprar</button>`;
+  
+          divMenu.appendChild(itemContainer);
+  
+          itemContainer.querySelector('button').addEventListener('click', () => {
+            comprarProducto(itemContainer);
+          });
+        });
+      })
+      .catch(error => {
+        console.error('Error al obtener los datos del menú:', error);
+      });
+  
+    fetch('cafeteria.json')
+      .then(response => response.json())
+      .then(data => {
+        const comentarios = data.Comentarios;
+        comentarios.forEach(comment => {
+          const newComment = document.createElement('div');
+          newComment.classList.add('comment');
+          const puntuacion = comment.Puntuacion;
+  
+          newComment.innerHTML = `<strong>${comment.Usuario}:</strong><br>${comment.Comentario}<br><strong>Puntuación:</strong> ${obtenerEstrellas(puntuacion)}`;
+  
+          commentsSection.appendChild(newComment);
+        });
+      })
+      .catch(error => {
+        console.error('Error al cargar los comentarios:', error);
+      });
+  
+    function enviarComentario() {
+      const nombre = document.getElementById("userInput").value;
+      const comentario = document.getElementById("userComment").value;
+      const puntuacion = document.querySelector('input[name="rating"]:checked').value;
+  
+      const nuevoComentario = document.createElement("div");
+      nuevoComentario.classList.add("comment");
+      nuevoComentario.innerHTML = `<strong>${nombre}:</strong><br>${comentario}<br><strong>Puntuación:</strong> ${obtenerEstrellas(puntuacion)}`;
+  
+      const comentariosSection = document.getElementById("comentarios");
+      comentariosSection.appendChild(nuevoComentario);
+  
+      document.getElementById("userInput").value = "";
+      document.getElementById("userComment").value = "";
+      const ratingInputs = document.querySelectorAll('input[name="rating"]');
+      ratingInputs.forEach(input => (input.checked = false));
+    }
+  
     const comentarBtn = document.getElementById("comentarBTN");
     comentarBtn.addEventListener("click", enviarComentario);
-});
+  });
+  
+  let carrito = [];
+  
+  function cargarProductos() {
+    carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    mostrarProductosEnCarrito();
+  }
+  
+  function mostrarProductosEnCarrito() {
+    const listaCarrito = document.getElementById('lista-carrito');
+    listaCarrito.innerHTML = '';
+  
+    carrito.forEach(producto => {
+      const item = document.createElement('li');
+      item.innerHTML = `${producto.name} - $${producto.price}`;
+      listaCarrito.appendChild(item);
+    });
+  
+    const total = carrito.reduce((sum, producto) => sum + producto.price, 0);
+    document.getElementById('total').innerText = `$${total.toFixed(2)}`;
+  }
+  
+  function agregarAlCarrito(producto) {
+    carrito.push(producto);
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    mostrarProductosEnCarrito();
+  }
+  
